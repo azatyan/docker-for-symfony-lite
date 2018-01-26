@@ -14,9 +14,6 @@ RUN printf '[PHP]\ndate.timezone = "%s"\n', ${TIMEZONE} > /usr/local/etc/php/con
 # Install PDO extensions
 RUN docker-php-ext-install pdo pdo_mysql
 
-# Install Redis extension
-RUN pecl install -o -f redis && rm -rf /tmp/pear && docker-php-ext-enable redis
-
 # Install xdebug
 RUN pecl install xdebug
 RUN docker-php-ext-enable xdebug
