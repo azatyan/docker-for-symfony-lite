@@ -93,4 +93,4 @@ Once all the containers are up, our services are available at:
 * PHPMyAdmin: [symfony.dev:8080](http://symfony.dev:8080)
 * Log files location: *logs/nginx* and *logs/symfony*
 
-Now we can stop our stack with `docker-compose down` and start it again with `docker-compose up -d`.
+:tada: Now we can stop our stack with `docker-compose down` and start it again with `docker-compose up -d`.
