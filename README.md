@@ -34,7 +34,7 @@ This stack needs [docker](https://www.docker.com/) and [docker-compose](https://
     $ docker-compose up -d
     ```
 
-3. Get the bridge IP address (use only one of the commands)
+3. Get the bridge IP address
 
     ```sh
     $ docker network inspect bridge | grep Gateway | grep -o -E '[0-9\.]+'
@@ -44,9 +44,12 @@ This stack needs [docker](https://www.docker.com/) and [docker-compose](https://
 
 4. Update your system's hosts file with the IP retrieved in **step 3**.
 
+    ```sh
+    $ sudo nano /etc/hosts
+    ```
 
 5. Prepare the Symfony application
-    1. Update Symfony parameters (*.env*)
+    1. Update Symfony parameters (*.env* file)
 
         ```
         #...
@@ -54,15 +57,14 @@ This stack needs [docker](https://www.docker.com/) and [docker-compose](https://
         #...
         ```
 
-    2. Composer install & create database from the container
+    2. Composer install & update the schema from the container
 
         ```sh
         $ docker-compose exec php bash
         $ composer install
-        $ symfony doctrine:database:create # It may fail if the database already exists
         $ symfony doctrine:schema:update --force
         ```
-        
+
 5. (Optional) Xdebug: Configure your IDE to connect to port `9001` with key `PHPSTORM`
 
 ## How does it work?
