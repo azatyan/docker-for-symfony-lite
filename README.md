@@ -2,6 +2,8 @@
 
 For a *more complete* version visit: [Docker-for-Symfony](https://github.com/carlosas/docker-for-symfony)
 
+[![Build Status](https://travis-ci.org/carlosas/docker-for-symfony-lite.svg?branch=symfony-4&style=flat-square)](https://travis-ci.org/carlosas/docker-for-symfony-lite)
+:octocat:
 [![license](https://img.shields.io/github/license/mashape/apistatus.svg?style=flat-square)](LICENSE)
 [![contributions](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat-square)](https://github.com/carlosas/docker-for-symfony-lite/issues)
 [![HitCount](http://hits.dwyl.com/carlosas/docker-for-symfony.svg)](http://hits.dwyl.com/carlosas/docker-for-symfony)
