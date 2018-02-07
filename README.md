@@ -27,29 +27,31 @@ This stack needs [docker](https://www.docker.com/) and [docker-compose](https://
     $ cp .env.dist .env && nano .env
     ```
 
-2. Build/run containers in detached mode
+2. Build/run containers in detached mode (stop any system's ngixn/apache2 service)
 
     ```sh
     $ docker-compose build
     $ docker-compose up -d
     ```
 
-3. Update your system's hosts file (use only one of the commands)
+3. Get the bridge IP address (use only one of the commands)
 
     ```sh
-    # Get bridge IP address and update hosts file
-    $ sudo echo $(docker network inspect bridge | grep Gateway | grep -o -E '[0-9\.]+') "symfony.dev" >> /etc/hosts
+    $ docker network inspect bridge | grep Gateway | grep -o -E '[0-9\.]+'
     # OR an alternative command
     $ ifconfig docker0 | awk '/inet:/{ print substr($2,6); exit }'
     ```
 
-4. Prepare the Symfony application
-    1. Update Symfony parameters (*app/config/parameters.yml*)
+4. Update your system's hosts file with the IP retrieved in **step 3**.
 
-        ```yml
-        parameters:
-            database_host: db
-            #...
+
+5. Prepare the Symfony application
+    1. Update Symfony parameters (*.env*)
+
+        ```
+        #...
+        DATABASE_URL=mysql://user:userpass@db:3306/mydb
+        #...
         ```
 
     2. Composer install & create database from the container
@@ -57,9 +59,10 @@ This stack needs [docker](https://www.docker.com/) and [docker-compose](https://
         ```sh
         $ docker-compose exec php bash
         $ composer install
-        $ symfony doctrine:database:create
+        $ symfony doctrine:database:create # It may fail if the database already exists
         $ symfony doctrine:schema:update --force
         ```
+        
 5. (Optional) Xdebug: Configure your IDE to connect to port `9001` with key `PHPSTORM`
 
 ## How does it work?
@@ -89,3 +92,5 @@ Once all the containers are up, our services are available at:
 * Symfony app: [symfony.dev](http://symfony.dev)
 * PHPMyAdmin: [symfony.dev:8080](http://symfony.dev:8080)
 * Log files location: *logs/nginx* and *logs/symfony*
+
+Now we can stop our stack with `docker-compose down` and start it again with `docker-compose up -d`.
