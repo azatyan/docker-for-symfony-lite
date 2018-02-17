@@ -1,7 +1,7 @@
 version: '2'
 
 services:
-    db:
+    mysql:
         container_name: container_mysql
         image: mysql
         volumes:
