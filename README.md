@@ -23,7 +23,7 @@ This stack needs [docker](https://www.docker.com/) and [docker-compose](https://
 
 ## Installation
 
-1. Create a `.env` from the `.env.dist` file and adapt it according to the needs of the application
+1. Create a `.env` file from `.env.dist` and adapt it according to the needs of the application
 
     ```sh
     $ cp .env.dist .env && nano .env
@@ -94,7 +94,7 @@ container_phpmyadmin    /run.sh phpmyadmin               Up      0.0.0.0:8080->8
 Once all the containers are up, our services are available at:
 
 * Symfony app: `http://symfony.dev:80`
-* MySQL server: `http://symfony.dev:3306`
+* MySQL server: `symfony.dev:3306`
 * PHPMyAdmin: `http://symfony.dev:8080`
 * Log files location: *logs/nginx* and *logs/symfony*
 
