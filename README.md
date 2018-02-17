@@ -29,7 +29,7 @@ This stack needs [docker](https://www.docker.com/) and [docker-compose](https://
     $ cp .env.dist .env && nano .env
     ```
 
-2. Build/run containers in detached mode (stop any system's ngixn/apache2 service)
+2. Build/run containers in detached mode (stop any local nginx/apache/mysql service)
 
     ```sh
     $ docker-compose build
@@ -55,7 +55,7 @@ This stack needs [docker](https://www.docker.com/) and [docker-compose](https://
 
         ```
         #...
-        DATABASE_URL=mysql://user:userpass@db:3306/mydb
+        DATABASE_URL=mysql://user:userpass@mysql:3306/mydb
         #...
         ```
 
@@ -75,7 +75,7 @@ We have the following *docker-compose* built images:
 
 * `nginx`: The Nginx webserver container in which the application volume is mounted.
 * `php`: The PHP-FPM container in which the application volume is mounted too.
-* `db`: The MySQL database container.
+* `mysql`: The MySQL database container.
 * `phpmyadmin`: The PHPMyAdmin server/administration container.
 
 Running `docker-compose ps` should result in the following running containers:
@@ -93,8 +93,11 @@ container_phpmyadmin    /run.sh phpmyadmin               Up      0.0.0.0:8080->8
 
 Once all the containers are up, our services are available at:
 
-* Symfony app: [symfony.dev](http://symfony.dev)
-* PHPMyAdmin: [symfony.dev:8080](http://symfony.dev:8080)
+* Symfony app: `http://symfony.dev:80`
+* MySQL server: `http://symfony.dev:3306`
+* PHPMyAdmin: `http://symfony.dev:8080`
 * Log files location: *logs/nginx* and *logs/symfony*
+
+---
 
 :tada: Now we can stop our stack with `docker-compose down` and start it again with `docker-compose up -d`.
