@@ -55,7 +55,7 @@ This stack needs [docker](https://www.docker.com/) and [docker-compose](https://
 
         ```
         #...
-        DATABASE_URL=mysql://user:userpass@mysql:3306/mydb
+        DATABASE_URL=mysql://db_user:db_password@mysql:3306/db_name
         #...
         ```
 
